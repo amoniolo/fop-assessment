@@ -1,0 +1,41 @@
+# Fundamentals of Programming (5K7V0027) - Betterment robo-advisory prototype
+#
+# Pinned so a clean install reproduces exactly the figures quoted in the report.
+# Section 8.2 of the working plan requires the package to install and run on a
+# clean virtual environment from this file, with no API key and no manual setup.
+#
+# Verified on Python 3.13.9 (Windows): all 46 tests pass, all four functions
+# run, both live and with the network disabled.
+#
+# Also verified against the older conda-managed stack (pandas 2.3.3,
+# numpy 2.3.5, scipy 1.16.3, matplotlib 3.10.6) with identical results, so the
+# code is not sensitive to which of those two sets is installed.
+
+# --- The four finance libraries the brief requires ---
+yfinance==1.7.0             # F1, F2, F4 - price history, no API key
+PyPortfolioOpt==1.6.0       # F2 - efficient frontier, shrinkage, discrete allocation
+numpy-financial==1.0.0      # F3 - time value of money (fv, pmt)
+QuantStats==0.0.81          # F4 - performance and risk analytics vs a benchmark
+
+# --- Supporting infrastructure (NOT offered as satisfying the brief) ---
+pandas==3.0.5
+numpy==2.5.2
+matplotlib==3.11.1
+scipy==1.18.1
+
+# --- Version notes ---
+#
+# QuantStats must be 0.0.65 or later. Release 0.0.64 declares numpy<2.0.0 in
+# its metadata, and numpy below 2.1 has no wheel for Python 3.13, so that
+# combination is unresolvable on this interpreter -- pip fails with
+# ResolutionImpossible before anything is installed. The pin is a conservative
+# metadata declaration rather than a real code incompatibility (0.0.64 runs
+# correctly under numpy 2 when the pin is bypassed), but a dependency resolver
+# acts on declared metadata, so the effect is the same.
+#
+# PyPortfolioOpt must be 1.6.0 or later for the same reason: 1.5.6 pins an
+# older numpy range that cannot be satisfied here.
+#
+# yfinance 1.7.0 is a major version ahead of the 0.2.x series. utils/data.py
+# normalises whichever column shape yfinance returns, so both work; 1.7.0 is
+# pinned because it is what was tested.

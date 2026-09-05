@@ -1,0 +1,34 @@
+# Fundamentals of Programming (5K7V0027)
+#
+# This repository holds the two prototype deliverables only. The planning
+# documents and the assessment brief live alongside them in the working folder
+# but are deliberately not published, so everything at the repository root is
+# ignored by default and the two project folders are added back explicitly.
+
+/*
+!/.gitignore
+!/README.md
+!/betterment_prototype/
+!/betterment_notebook/
+
+# --- Python ---------------------------------------------------------------
+# The virtual environment is ~500 MB and is rebuilt from requirements.txt.
+**/.venv/
+**/venv/
+**/env/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# --- Jupyter --------------------------------------------------------------
+**/.ipynb_checkpoints/
+# Build artefact from the headless test run, not source.
+*.executed.ipynb
+
+# --- Editors and OS -------------------------------------------------------
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store

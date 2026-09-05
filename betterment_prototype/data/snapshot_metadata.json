@@ -1,0 +1,21 @@
+{
+  "captured": "2026-09-05",
+  "tickers": [
+    "BND",
+    "BNDX",
+    "SPY",
+    "VBR",
+    "VEA",
+    "VOE",
+    "VTI",
+    "VTIP",
+    "VTV",
+    "VWO",
+    "VWOB"
+  ],
+  "first_date": "2016-09-06",
+  "last_date": "2026-09-04",
+  "rows": 2514,
+  "source": "Yahoo Finance via yfinance, adjusted close",
+  "note": "Bundled so the artefact runs with the network disabled. Figures produced from this snapshot are as of the last date above, not today."
+}
