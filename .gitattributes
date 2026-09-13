@@ -1,0 +1,11 @@
+# Normalise line endings so the repository stays LF regardless of platform.
+* text=auto eol=lf
+
+# Notebooks are JSON; keep them LF and diffable as text.
+*.ipynb text eol=lf
+
+# Binary assets - never touch these.
+*.png binary
+*.jpg binary
+*.pdf binary
+*.docx binary

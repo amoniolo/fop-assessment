@@ -106,7 +106,13 @@ ENGINE = find_engine()
 if str(ENGINE) not in sys.path:
     sys.path.insert(0, str(ENGINE))
 
-print(f"Engine package: {ENGINE}")
+# Report the location relative to the working directory rather than absolutely.
+# An absolute path would bake this machine's user name and folder structure
+# into the saved cell output, which then travels with the notebook wherever it
+# is shared. The relative form is also the more useful thing to see: it tells
+# you where the engine sits in relation to the notebook.
+import os
+print(f"Engine package: {os.path.relpath(ENGINE, Path.cwd())}")
 ''')
 
 code(r'''
