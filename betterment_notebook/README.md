@@ -85,13 +85,12 @@ see.
 
 ## Chart design
 
-Colour is assigned by the job it does rather than chosen by taste.
+Colour is assigned by function.
 
 **Only two categorical hues appear anywhere** — blue `#2a78d6` and orange
 `#eb6834` — because no chart here carries more than two identities: equity
-against bonds, portfolio against benchmark. The pair was checked rather than
-eyeballed: worst adjacent colour-vision-deficient ΔE **24.7** against a target
-of ≥ 8, normal-vision ΔE **33.6** against a floor of 15, and both clear 3:1
+against bonds, portfolio against benchmark. The two are far enough apart to
+stay distinguishable under colour-vision deficiency, and both hold their
 contrast against the chart surface.
 
 | Figure | Form | Why that form |
