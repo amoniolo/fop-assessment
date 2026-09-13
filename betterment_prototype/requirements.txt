@@ -2,14 +2,11 @@
 #
 # Pinned so a clean install reproduces exactly the figures quoted in the report.
 # Section 8.2 of the working plan requires the package to install and run on a
-# clean virtual environment from this file, with no API key and no manual setup.
+# clean environment from this file, with no API key and no manual setup.
 #
-# Verified on Python 3.13.9 (Windows): all 46 tests pass, all four functions
-# run, both live and with the network disabled.
-#
-# Also verified against the older conda-managed stack (pandas 2.3.3,
-# numpy 2.3.5, scipy 1.16.3, matplotlib 3.10.6) with identical results, so the
-# code is not sensitive to which of those two sets is installed.
+# Verified on Python 3.13.9 (Windows): 46/46 engine tests pass, all four
+# functions run both live and with the network disabled, and the notebook
+# edition executes end to end with no errors.
 
 # --- The four finance libraries the brief requires ---
 yfinance==1.7.0             # F1, F2, F4 - price history, no API key
@@ -18,24 +15,53 @@ numpy-financial==1.0.0      # F3 - time value of money (fv, pmt)
 QuantStats==0.0.81          # F4 - performance and risk analytics vs a benchmark
 
 # --- Supporting infrastructure (NOT offered as satisfying the brief) ---
-pandas==3.0.5
-numpy==2.5.2
-matplotlib==3.11.1
-scipy==1.18.1
+pandas==2.3.3
+numpy==2.3.5
+scipy==1.16.3
+matplotlib==3.10.6
 
-# --- Version notes ---
+
+# ===========================================================================
+# SIDE NOTE - on using a newer pandas
+# ===========================================================================
 #
-# QuantStats must be 0.0.65 or later. Release 0.0.64 declares numpy<2.0.0 in
-# its metadata, and numpy below 2.1 has no wheel for Python 3.13, so that
-# combination is unresolvable on this interpreter -- pip fails with
-# ResolutionImpossible before anything is installed. The pin is a conservative
-# metadata declaration rather than a real code incompatibility (0.0.64 runs
-# correctly under numpy 2 when the pin is bypassed), but a dependency resolver
-# acts on declared metadata, so the effect is the same.
+# The four supporting versions above are deliberately NOT the newest releases.
+# They are the set the project was actually verified on, and they match the
+# stack that ships with a current Anaconda distribution (Python 3.13.9).
 #
-# PyPortfolioOpt must be 1.6.0 or later for the same reason: 1.5.6 pins an
-# older numpy range that cannot be satisfied here.
+# The code itself is not restricted to them. An earlier pinned set - pandas
+# 3.0.5, numpy 2.5.2, scipy 1.18.1, matplotlib 3.11.1 - also passed all 46
+# engine tests and produced figures identical to the set above, so nothing in
+# this project depends on pandas 2.x behaviour. None of the four finance
+# libraries forces the choice either; all accept a wide range:
 #
-# yfinance 1.7.0 is a major version ahead of the 0.2.x series. utils/data.py
-# normalises whichever column shape yfinance returns, so both work; 1.7.0 is
-# pinned because it is what was tested.
+#     QuantStats 0.0.81      pandas>=1.5.0
+#     PyPortfolioOpt 1.6.0   pandas>=1.0.0,<4.0.0
+#     yfinance 1.7.0         pandas>=1.3.0
+#     numpy-financial 1.0.0  (no pandas constraint)
+#
+# The reason for stepping back from pandas 3.0.5 is environmental rather than
+# technical. On a managed Windows machine, importing the pandas 3.0.5 *pip
+# wheel* was refused outright by Windows Application Control:
+#
+#     ImportError: DLL load failed while importing period:
+#     An Application Control policy has blocked this file.
+#
+# pandas 3.0 is a very new major release, so its binaries have little
+# reputation data behind them and security policies on locked-down machines
+# block them. The conda-channel build of pandas 2.3.3 loaded without any
+# such problem on the same machine. Since this package has to run on a
+# marker's computer rather than only on the author's, the version that
+# installs everywhere is worth more than the version that is newest.
+#
+# To run on the latest stack instead, replace the four supporting pins with:
+#
+#     pandas>=2.2
+#     numpy>=2.1
+#     scipy>=1.14
+#     matplotlib>=3.9
+#
+# That is expected to work and was tested on pandas 3.0.5 specifically, but
+# the exact versions pip resolves will drift over time, so the figures in the
+# report are only guaranteed to reproduce with the pins at the top of this
+# file.

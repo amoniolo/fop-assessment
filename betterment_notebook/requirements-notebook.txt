@@ -1,7 +1,12 @@
 # Notebook-only extras. The advisory engine's own dependencies are in
-# ../betterment_prototype/requirements.txt and must be installed as well.
+# ../betterment_prototype/requirements.txt and must be installed as well:
 #
-# Verified on Anaconda Python 3.13.9 (Windows).
+#     pip install -r ../betterment_prototype/requirements.txt
+#     pip install -r requirements-notebook.txt
+#
+# Verified on Python 3.13.9 (Windows). These versions match the stack that
+# ships with a current Anaconda distribution, so on Anaconda they are usually
+# already present and the install is a no-op.
 
 plotly==6.3.0            # interactive figures
 ipywidgets==8.1.7        # the control panels
@@ -9,5 +14,9 @@ notebook==7.4.5          # or jupyterlab, either works
 jupyterlab==4.4.7
 
 # Optional: static PNG export of the Plotly figures, used to produce figures/
-# for the report appendix. Not needed to run the notebook interactively.
-kaleido
+# for the report appendix. The notebook runs interactively without it.
+kaleido==1.4.0
+
+# See the side note at the bottom of ../betterment_prototype/requirements.txt
+# for why the supporting libraries are pinned to the Anaconda-matching set
+# rather than to the newest releases.
