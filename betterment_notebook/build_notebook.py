@@ -159,16 +159,12 @@ md(r"""
 One Plotly template for every figure, so the four sections read as one
 document rather than four unrelated charts.
 
-**Colour is assigned by the job it does, not by taste.** Only two categorical
+**Colour is assigned by function.** Only two categorical
 hues are used anywhere — blue and orange — because no chart here carries more
 than two identities (equity/bonds, portfolio/benchmark). Reference marks such
 as the individual sleeves on the frontier are deliberately *not* given
 categorical colour: they are context, not series, so they are drawn in a muted
 grey and labelled directly.
-
-The pair was checked for colour-vision separation rather than eyeballed: worst
-adjacent CVD ΔE 24.7 against a target of ≥ 8, normal-vision ΔE 33.6 against a
-floor of 15, and both clear 3:1 contrast against the chart surface.
 
 The template pins its own light surface rather than inheriting the Jupyter
 theme, so the figures stay legible under either a light or a dark notebook
